@@ -54,3 +54,4 @@ if __name__ == "__main__":
     print(f"IP-Address:       {decimal_ip}\n"
           f"Subnet Mask:      {decimal_snm}\n"
           f"Network Address:  {decimal_netaddress} \{prefix}")
+
