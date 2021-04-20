@@ -3,14 +3,14 @@ from tabulate import tabulate
 
 class Network_Details(object):
     def __init__(self):
-        self.parser = psutil.net_if_addrs()
+        self.instance = psutil.net_if_addrs()
 
-    def __repr__(self):
+    def scanner(self):
         self.interfaces = []
         self.address_ip = []
         self.netmask_ip = []
         self.broadcast_ip = []
-        for interface_name, interface_addresses in self.parser.items():
+        for interface_name, interface_addresses in self.instance.items():
             self.interfaces.append(interface_name)
             for address in interface_addresses:
                 if str(address.family) == 'AddressFamily.AF_INET':
@@ -23,6 +23,9 @@ class Network_Details(object):
                 "Broadcast-IP" : [*self.netmask_ip]
                 }
         return tabulate(data, headers="keys", tablefmt="github")
+    
+    def __str__(self):
+        return str(self.scanner())
 
 if __name__ == "__main__":
     print(Network_Details())
