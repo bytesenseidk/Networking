@@ -22,7 +22,7 @@ class Network_Details(object):
         data = {"Interface"    : [*self.interfaces],
                 "IP-Address"   : [*self.address_ip],  
                 "Netmask"      : [*self.netmask_ip],
-                "Broadcast-IP" : [*self.netmask_ip]
+                "Broadcast-IP" : [*self.broadcast_ip]
                 }
         return tabulate(data, headers="keys", tablefmt="github")
     
