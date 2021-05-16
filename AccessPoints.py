@@ -41,7 +41,7 @@ class AccessPointScanner(object):
 
 if __name__ == "__main__":
     ap = AccessPointScanner()
-    interface = "InterfaceName0mon"
+    interface = "wlan1mon"
     printer = Thread(target=ap.print_all)
     channel_changer = Thread(target=ap.change_channel)
     printer.daemon = True
