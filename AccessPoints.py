@@ -21,7 +21,7 @@ class AccessPointScanner(object):
                 dbm_signal = "N/A"
             stats = packet[Dot11Beacon].network_stats()
             channel = stats.get("channel")
-            crupto = stats.get("crypto")
+            crypto = stats.get("crypto")
             self.networks.loc[bssid] = (ssid, dbm_signal, channel, crypto)
         
     
@@ -48,4 +48,4 @@ if __name__ == "__main__":
     channel_changer.daemon = True
     printer.start()
     channel_changer.start()
-    sniff(prn=callback, iface=interface)
+    sniff(prn=ap.callback, iface=interface)
