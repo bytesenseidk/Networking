@@ -4,6 +4,7 @@ import pandas
 from threading import Thread
 from scapy.all import *
 
+
 class AccessPointScanner(object):
     def __init__(self):
         self.networks = pandas.DataFrame(columns=["BSSID", "SSID", "dBm_signal", "Channel", "Crypto"])
@@ -24,6 +25,12 @@ class AccessPointScanner(object):
             self.networks.loc[bssid] = (ssid, dbm_signal, channel, crypto)
         
     
+    def change_channel(self):
+        ch = 1
+        while True:
+            os.system(f"iwconfig {interface} channel {ch}")
+            ch = ch % 14 + 1
+            time.sleep(.5)
         
 
     def print_all(self):
@@ -36,6 +43,9 @@ if __name__ == "__main__":
     ap = AccessPointScanner()
     interface = "InterfaceName0mon"
     printer = Thread(target=ap.print_all)
+    channel_changer = Thread(target=ap.change_channel)
     printer.daemon = True
+    channel_changer.daemon = True
     printer.start()
+    channel_changer.start()
     sniff(prn=callback, iface=interface)
