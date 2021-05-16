@@ -39,6 +39,7 @@ class AccessPointScanner(object):
             print(self.networks)
             time.sleep(.5)
 
+
 if __name__ == "__main__":
     ap = AccessPointScanner()
     interface = "wlan1mon"
