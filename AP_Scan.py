@@ -8,7 +8,7 @@ def get_args():
     options = parser.parse_args()
 
     if not options.target:
-        parser.error("[-] Please specify an IP address or addresses, use --help for more info")
+        parser.error("[!] Please specify an IP address or addresses, use --help for more info")
     return options
 
 
