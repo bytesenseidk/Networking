@@ -1,6 +1,7 @@
 import argparse
 import scapy.all as scapy
 
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--target", dest="target", help="Target IP Address/Addresses")
