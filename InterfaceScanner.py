@@ -1,7 +1,7 @@
 import psutil
 from tabulate import tabulate
 
-class Network_Details(object):
+class InterfaceScanner(object):
     def __init__(self):
         self.instance = psutil.net_if_addrs()
 
@@ -28,5 +28,5 @@ class Network_Details(object):
         return str(self.scanner())
 
 if __name__ == "__main__":
-    print(Network_Details())
+    print(InterfaceScanner())
 
