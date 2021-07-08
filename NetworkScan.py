@@ -1,11 +1,9 @@
 import psutil
 from tabulate import tabulate
 
-
 class Network_Details(object):
     def __init__(self):
         self.instance = psutil.net_if_addrs()
-
 
     def scanner(self):
         self.interfaces = []
@@ -25,12 +23,9 @@ class Network_Details(object):
                 "Broadcast-IP" : [*self.netmask_ip]
                 }
         return tabulate(data, headers="keys", tablefmt="github")
-    
 
     def __str__(self):
         return str(self.scanner())
 
-
 if __name__ == "__main__":
     print(Network_Details())
-
