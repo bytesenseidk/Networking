@@ -2,11 +2,11 @@
 - The broadcast address converts all host bits to 1's.
 - With 11 bits of the IP-address, we find the host mask by inverting the network address.
 - Using the same addresses as above:
-	- IP-address: 			128.42.5.4		In binary:	10000000.00101010.00000101.00000100
+	- IP-address: 			128.42.5.4	In binary:	10000000.00101010.00000101.00000100
 	- Host bit mask:		155.255.248.0	In binary:	00000000.00000000.00000hhh.hhhhhhhh
 	- Force Host Bits:						_____________________________________________
-	- Binary Broadcast:									10000000.00101010.00000111.11111111
-	- Broadcast Address:	                            128     .42      .7       .255
+	- Binary Broadcast:						10000000.00101010.00000111.11111111
+	- Broadcast Address:			                        128     .42      .7       .255
 
 """
 """ Broadcast Address Calculator """
