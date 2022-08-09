@@ -4,12 +4,12 @@ from tabulate import tabulate
 class InterfaceScanner(object):
     def __init__(self):
         self.instance = psutil.net_if_addrs()
-
-    def scanner(self):
         self.interfaces = []
         self.address_ip = []
         self.netmask_ip = []
         self.broadcast_ip = []
+
+    def scanner(self):
         for interface_name, interface_addresses in self.instance.items():
             self.interfaces.append(interface_name)
             for address in interface_addresses:
