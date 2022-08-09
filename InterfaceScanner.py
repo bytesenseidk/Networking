@@ -9,6 +9,9 @@ class InterfaceScanner(object):
         self.netmask_ip = []
         self.broadcast_ip = []
 
+    def __str__(self):
+        return str(self.scanner())
+    
     def scanner(self):
         for interface_name, interface_addresses in self.instance.items():
             self.interfaces.append(interface_name)
@@ -23,9 +26,6 @@ class InterfaceScanner(object):
                 "Broadcast-IP" : [*self.netmask_ip]
                 }
         return tabulate(data, headers="keys", tablefmt="github")
-
-    def __str__(self):
-        return str(self.scanner())
 
 if __name__ == "__main__":
     print(InterfaceScanner())
