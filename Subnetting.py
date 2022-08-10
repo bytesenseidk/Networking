@@ -46,3 +46,4 @@ if __name__ == "__main__":
     network_id = "192.168.1.0/24"
     subnets = 3
     print(Subnet(network_id, subnets))
+
