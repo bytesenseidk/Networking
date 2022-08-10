@@ -3,6 +3,8 @@ Subnet: |  1  |  2  |  4  |  8  | 16  |  32 |  64 | 128 | 256 |
 Host:   | 256 | 128 |  64 |  32 | 16  |  8  |  4  |  2  |  1  |
 SNM:    | /24 | /25 | /26 | /27 | /38 | /29 | /30 | /31 | /32 |
 """
+from tabulate import tabulate
+
 class Subnet(object):
     def __init__(self, network_id, subnet_count):
         self.network_id = network_id.split("/")[0]
@@ -13,6 +15,10 @@ class Subnet(object):
             "64": [4, 30], "128": [2, 31], "256": [1, 32]
         }
         self.subnet_specs = self.__subnet_specs(1)
+    
+    def __str__(self):
+        data = self.subnetworks()
+        return str(tabulate(data, headers="keys", tablefmt="github"))
         
     def __subnet_specs(self, subnet_count):
         while subnet_count < len(range(self.subnet_count)):
@@ -26,8 +32,8 @@ class Subnet(object):
             "Network ID": [],
             "Broadcast ID": [],
             "Subnet Range": [],
-            "Subnet Mask": self.subnet_specs[2],
-            "Usable Hosts": self.subnet_specs[1] - 2
+            "Subnet Mask": [],
+            "Usable Hosts": []
         }
         host_bit = 0
         broad_id = self.subnet_specs[1] - 1
@@ -35,15 +41,15 @@ class Subnet(object):
         for i in range(self.subnet_specs[0]):
             subnets["Network ID"].append(str(net_id + "." + str(host_bit)))
             subnets["Broadcast ID"].append(str(net_id + "." + str(broad_id)))
-            subnets["Subnet Range"].append(str(net_id + "." + str(host_bit + 1) + "-" + str(net_id + "." + str(broad_id - 1))))
+            subnets["Subnet Range"].append(str(net_id + "." + str(host_bit + 1) + " - " + str(net_id + "." + str(broad_id - 1))))
+            subnets["Subnet Mask"].append(str(self.subnet_specs[2]))
+            subnets["Usable Hosts"].append(str(self.subnet_specs[1] - 2))
             host_bit += self.subnet_specs[1]
             broad_id += self.subnet_specs[1]
         return subnets
         
         
 if __name__ == "__main__":
-    network_id = "192.168.4.0/24"
+    network_id = "192.168.1.0/24"
     subnets = 3
-    temp = Subnet(network_id, subnets)
-    print(temp.subnetworks())
-    # print(temp)
+    print(Subnet(network_id, subnets))
