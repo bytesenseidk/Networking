@@ -1,6 +1,11 @@
 from tabulate import tabulate
 
 class Subnet(object):
+    """
+    A subnet, or subnetwork, is a network inside a network. Subnets make networks more efficient. 
+    Through subnetting, network traffic can travel a shorter distance without passing through 
+    unnecessary routers to reach its destination.
+    """
     def __init__(self, network_id, subnet_count):
         self.network_id = network_id.split("/")[0]
         self.subnet_count = subnet_count
