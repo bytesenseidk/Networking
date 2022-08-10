@@ -35,7 +35,8 @@ class Subnet(object):
         for i in range(self.subnet_specs[0]):
             subnets["Network ID"].append(str(net_id + "." + str(host_bit)))
             subnets["Broadcast ID"].append(str(net_id + "." + str(broad_id)))
-            subnets["Subnet Range"].append(str(net_id + "." + str(host_bit + 1) + " - " + str(net_id + "." + str(broad_id - 1))))
+            subnets["Subnet Range"].append(str(net_id + "." + str(host_bit + 1) + 
+                                   " - " + str(net_id + "." + str(broad_id - 1))))
             subnets["Subnet Mask"].append(str(self.subnet_specs[2]))
             subnets["Usable Hosts"].append(str(self.subnet_specs[1] - 2))
             host_bit += self.subnet_specs[1]
