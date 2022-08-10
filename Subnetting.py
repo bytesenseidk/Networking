@@ -1,8 +1,3 @@
-""" Subnet Table:
-Subnet: |  1  |  2  |  4  |  8  | 16  |  32 |  64 | 128 | 256 |
-Host:   | 256 | 128 |  64 |  32 | 16  |  8  |  4  |  2  |  1  |
-SNM:    | /24 | /25 | /26 | /27 | /38 | /29 | /30 | /31 | /32 |
-"""
 from tabulate import tabulate
 
 class Subnet(object):
@@ -17,8 +12,7 @@ class Subnet(object):
         self.subnet_specs = self.__subnet_specs(1)
     
     def __str__(self):
-        data = self.subnetworks()
-        return str(tabulate(data, headers="keys", tablefmt="github"))
+        return str(tabulate(self.subnetworks(), headers="keys", tablefmt="github"))
         
     def __subnet_specs(self, subnet_count):
         while subnet_count < len(range(self.subnet_count)):
@@ -35,9 +29,9 @@ class Subnet(object):
             "Subnet Mask": [],
             "Usable Hosts": []
         }
-        host_bit = 0
-        broad_id = self.subnet_specs[1] - 1
         net_id = '.'.join(self.network_id.split(".")[:-1])
+        broad_id = self.subnet_specs[1] - 1
+        host_bit = 0
         for i in range(self.subnet_specs[0]):
             subnets["Network ID"].append(str(net_id + "." + str(host_bit)))
             subnets["Broadcast ID"].append(str(net_id + "." + str(broad_id)))
@@ -47,7 +41,6 @@ class Subnet(object):
             host_bit += self.subnet_specs[1]
             broad_id += self.subnet_specs[1]
         return subnets
-        
         
 if __name__ == "__main__":
     network_id = "192.168.1.0/24"
