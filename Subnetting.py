@@ -1,5 +1,6 @@
 from tabulate import tabulate
 
+
 class Subnet(object):
     def __init__(self, network_id, subnet_count):
         self.network_id = network_id.split('/')[0]
@@ -11,16 +12,20 @@ class Subnet(object):
         }
         self.subnet_specs = self.__subnet_specs(1)
     
+
     def __str__(self):
         return str(tabulate(self.subnetworks(), headers="keys", tablefmt="github"))
     
+
     def __subnet_specs(self, subnet_count):
         while subnet_count < len(range(self.subnet_count)):
             return self.__subnet_specs(subnet_count + subnet_count)
+
         data = self.subnet_table[str(subnet_count)]
         data.insert(0, subnet_count)
         return data
     
+
     def subnetworks(self):
         subnets = {
             "Network ID":   [],
@@ -32,6 +37,7 @@ class Subnet(object):
         net_id = '.'.join(self.network_id.split('.')[:-1])
         host_id = self.subnet_specs[1] - 1
         host_bit = 0
+
         for i in range(self.subnet_specs[0]):
             subnets["Network ID"].append(str(net_id + '.' + str(host_bit)))
             subnets["Broadcast ID"].append(str(net_id + '.' + str(host_id)))
@@ -41,7 +47,9 @@ class Subnet(object):
             subnets["Usable Hosts"].append(str(self.subnet_specs[1] - 2))
             host_bit += self.subnet_specs[1]
             host_id += self.subnet_specs[1]
+
         return subnets
+
 
 if __name__ == "__main__":
     network_id = "192.168.1.0/24"
