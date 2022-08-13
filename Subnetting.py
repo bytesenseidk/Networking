@@ -21,4 +21,29 @@ class Subnet(object):
         data.insert(0, subnet_count)
         return data
     
-    
+    def subnetworks(self):
+        subnets = {
+            "Network ID":   [],
+            "Broadcast ID": [],
+            "Subnet Range": [],
+            "Subnet Mask":  [],
+            "Usable Hosts": [],
+        }
+        net_id = '.'.join(self.network_id.split('.')[:-1])
+        host_id = self.subnet_specs[1] - 1
+        host_bit = 0
+        for i in range(self.subnet_specs[0]):
+            subnets["Network ID"].append(str(net_id + '.' + str(host_bit)))
+            subnets["Broadcast ID"].append(str(net_id + '.' + str(host_id)))
+            subnets["Subnet Range"].append(str(net_id + '.' + str(host_bit + 1) + 
+                                    ' - ' + str(net_id + '.' + str(host_id - 1))))
+            subnets["Subnet Mask"].append(str(self.subnet_specs[2]))
+            subnets["Usable Hosts"].append(str(self.subnet_specs[1] - 2))
+            host_bit += self.subnet_specs[1]
+            host_id += self.subnet_specs[1]
+        return subnets
+
+if __name__ == "__main__":
+    network_id = "192.168.1.0/24"
+    subnets = 3
+    print(Subnet(network_id, subnets))
