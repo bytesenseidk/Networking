@@ -21,8 +21,8 @@ class Network_Details(object):
         up = str(f"{round(self.speed.upload() / 1_000_000, 2)} Mbps")
         interface = self.interfaces
         data = {"Interface:" : [interface],
-                "Download:" : [down],
-                "Upload:" : [up]}
+                "Download:"  : [down],
+                "Upload:"    : [up]}
         table = tabulate(data, headers="keys", tablefmt="pretty")
         return table
 
