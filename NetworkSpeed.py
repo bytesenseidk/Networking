@@ -1,5 +1,5 @@
 import psutil
-import speedtest
+import speedtest # pip install speedtest-cli
 from tabulate import tabulate
 
 class Network_Details(object):
@@ -33,3 +33,4 @@ class Network_Details(object):
 
 if __name__ == "__main__":
     print(Network_Details())
+
