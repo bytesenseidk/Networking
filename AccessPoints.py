@@ -37,7 +37,7 @@ class AccessPointScanner(object):
             time.sleep(.5)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":Code
     ap = AccessPointScanner()
     interface = "wlan0mon"
     printer = Thread(target=ap.print_all)
