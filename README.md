@@ -37,4 +37,4 @@ Networking Tools for Calculations & Scans
     * Professionalize Project
 
 # Licence
-This project is licenced under the Mozilla Public License 2.0 - see the [LICENCE](https://github.com/bytesenseidk/Mixed-Applications/blob/main/LICENCE) for details
+This project is licenced under the Mozilla Public License 2.0 - see the [LICENCE](https://github.com/bytesenseidk/Networking/blob/main/LICENCE) for details
